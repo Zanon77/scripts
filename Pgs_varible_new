@@ -1,0 +1,42 @@
+<changeSet id="6" author="sneha" dbms="h2, oracle">
+
+    <createTable tableName="PGS_VARIABLE">
+
+        <column name="ID" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+
+        <column name="PROCESS_ID" type="BIGINT">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="NAME" type="VARCHAR2(255)">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="TYPE" type="VARCHAR2(50)">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="TEXT_VALUE" type="CLOB"/>
+        <column name="LONG_VALUE" type="NUMBER(19)"/>
+        <column name="DOUBLE_VALUE" type="NUMBER(19,4)"/>
+        <column name="DATE_VALUE" type="TIMESTAMP"/>
+
+        <column name="CREATED_DATE" type="TIMESTAMP">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
+
+    </createTable>
+
+    <addForeignKeyConstraint
+            baseTableName="PGS_VARIABLE"
+            baseColumnNames="PROCESS_ID"
+            referencedTableName="PGS_PROCESS"
+            referencedColumnNames="ID"
+            constraintName="FK_PGS_VARIABLE_PROCESS_ID"/>
+
+</changeSet>
+
