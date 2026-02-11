@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="5" author="sneha" dbms="h2, oracle">
+
+        <createTable tableName="PGS_ACTIVITY">
+
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <!-- FK to PROCESS -->
+            <column name="PROCESS_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <!-- FK to ACTIVITY MASTER -->
+            <column name="JOB_ACTIVITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="CREATION_DATE" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
+
+        </createTable>
+
+        <!-- Foreign Key to PGS_PROCESS -->
+        <addForeignKeyConstraint
+                baseTableName="PGS_ACTIVITY"
+                baseColumnNames="PROCESS_ID"
+                referencedTableName="PGS_PROCESS"
+                referencedColumnNames="ID"
+                constraintName="FK_PGS_ACTIVITY_PROCESS_ID"/>
+
+        <!-- Foreign Key to PGS_JOB_ACTIVITY_MASTER -->
+        <addForeignKeyConstraint
+                baseTableName="PGS_ACTIVITY"
+                baseColumnNames="JOB_ACTIVITY_ID"
+                referencedTableName="PGS_JOB_ACTIVITY_MASTER"
+                referencedColumnNames="ID"
+                constraintName="FK_PGS_ACTIVITY_JOB_ACTIVITY_ID"/>
+
+    </changeSet>
+
+</databaseChangeLog>
+
