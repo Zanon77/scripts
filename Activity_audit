@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="8" author="sneha" dbms="h2, oracle">
+
+        <createTable tableName="PGS_ACTIVITY_AUDIT">
+
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="ACTIVITY_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="PROCESS_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="OLD_STATE" type="VARCHAR2(100)"/>
+            <column name="NEW_STATE" type="VARCHAR2(100)"/>
+
+            <column name="ACTION_TYPE" type="VARCHAR2(50)"/>
+            <column name="CHANGED_BY" type="VARCHAR2(255)"/>
+
+            <column name="CHANGED_DATE" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
+
